@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { User } = require("./models/User");
+const User = require("./models/User"); 
 const UserController = {
   register: async (req, res) => {
     try {
@@ -8,9 +8,7 @@ const UserController = {
 
       // Check if username or email already exists
       const existingUser = await User.findOne({
-        where: {
-          $or: [{ username }, { email }],
-        },
+        $or: [{ username }, { email }],
       });
 
       if (existingUser) {
